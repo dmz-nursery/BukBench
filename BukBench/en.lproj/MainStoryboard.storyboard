@@ -1,23 +1,113 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2519" systemVersion="12A206j" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="2">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2840" systemVersion="12A269" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="zDs-9N-JYh">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1856"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1926"/>
     </dependencies>
     <scenes>
-        <!--class Prefix:identifier View Controller-->
-        <scene sceneID="5">
+        <!--View Controller - Item 2-->
+        <scene sceneID="j3G-52-7q2">
             <objects>
-                <viewController id="2" customClass="BBViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="3">
-                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
+                <viewController id="UMj-la-boO" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="YhC-gM-O8A">
+                        <rect key="frame" x="0.0" y="20" width="320" height="499"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Item 2" id="2kL-eC-Tpe"/>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tQc-x5-Cgp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="583" y="158"/>
+        </scene>
+        <!--Search View Controller-->
+        <scene sceneID="BC9-ve-qGa">
+            <objects>
+                <viewController id="cSR-Wk-8ep" customClass="BBSearchViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Fnk-DU-KEv">
+                        <rect key="frame" x="0.0" y="64" width="320" height="455"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="trP-qc-Ivk"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="joE-9n-Bov">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="pP2-6a-6kh"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="bookEnteredInSearchBox:" destination="cSR-Wk-8ep" eventType="editingDidEnd" id="K2r-Hy-h4y"/>
+                                </connections>
+                            </textField>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="joE-9n-Bov" firstAttribute="top" secondItem="Fnk-DU-KEv" secondAttribute="top" constant="165" id="AKe-Rh-GfS"/>
+                            <constraint firstItem="trP-qc-Ivk" firstAttribute="leading" secondItem="Fnk-DU-KEv" secondAttribute="leading" type="default" id="PHf-Wu-VRW"/>
+                            <constraint firstItem="joE-9n-Bov" firstAttribute="centerX" secondItem="trP-qc-Ivk" secondAttribute="centerX" type="default" id="PTY-6p-qS2"/>
+                            <constraint firstItem="trP-qc-Ivk" firstAttribute="trailing" secondItem="Fnk-DU-KEv" secondAttribute="trailing" type="default" id="blA-Rl-XE1"/>
+                            <constraint firstItem="trP-qc-Ivk" firstAttribute="top" secondItem="Fnk-DU-KEv" secondAttribute="top" type="default" id="gcM-Zc-mTU"/>
+                            <constraint firstItem="trP-qc-Ivk" firstAttribute="bottom" secondItem="Fnk-DU-KEv" secondAttribute="bottom" type="default" id="srw-7f-ROI"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="aTi-HJ-LkW"/>
+                    <connections>
+                        <outlet property="searchBox" destination="joE-9n-Bov" id="rAm-8Y-gSs"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rTN-9c-KV1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1061" y="-495"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="Old-yF-pBp">
+            <objects>
+                <tabBarController definesPresentationContext="YES" id="zDs-9N-JYh" sceneMemberID="viewController">
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="mRe-J5-VkL">
+                        <rect key="frame" x="129" y="330" width="163" height="49"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="rag-ti-SNT" kind="relationship" relationship="viewControllers" id="jEn-aU-992"/>
+                        <segue destination="UMj-la-boO" kind="relationship" relationship="viewControllers" id="9XM-eJ-tEy"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RHk-hA-Rat" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="49" y="-168"/>
+        </scene>
+        <!--Navigation Controller - Item 1-->
+        <scene sceneID="w2n-O7-xRU">
+            <objects>
+                <navigationController id="rag-ti-SNT" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item 1" id="3q3-lo-5bt"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ksq-Vi-ahD">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="cSR-Wk-8ep" kind="relationship" relationship="rootViewController" id="RXw-qW-x3y"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dNi-NR-dHl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="583" y="-495"/>
         </scene>
     </scenes>
+    <classes>
+        <class className="BBSearchViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/BBSearchViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="bookEnteredInSearchBox:"/>
+                <relationship kind="outlet" name="searchBox" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

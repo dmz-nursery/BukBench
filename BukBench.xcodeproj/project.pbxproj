@@ -23,6 +23,7 @@
 		0AAC27931689448F008182A1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AAC276E1689448F008182A1 /* Foundation.framework */; };
 		0AAC279B1689448F008182A1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0AAC27991689448F008182A1 /* InfoPlist.strings */; };
 		0AAC279E1689448F008182A1 /* BukBenchTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AAC279D1689448F008182A1 /* BukBenchTests.m */; };
+		0AAC27A9168944ED008182A1 /* BBSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AAC27A8168944ED008182A1 /* BBSearchViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +59,8 @@
 		0AAC279A1689448F008182A1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		0AAC279C1689448F008182A1 /* BukBenchTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BukBenchTests.h; sourceTree = "<group>"; };
 		0AAC279D1689448F008182A1 /* BukBenchTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BukBenchTests.m; sourceTree = "<group>"; };
+		0AAC27A7168944ED008182A1 /* BBSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBSearchViewController.h; sourceTree = "<group>"; };
+		0AAC27A8168944ED008182A1 /* BBSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBSearchViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +123,8 @@
 				0AAC277B1689448F008182A1 /* BBAppDelegate.h */,
 				0AAC277C1689448F008182A1 /* BBAppDelegate.m */,
 				0AAC27841689448F008182A1 /* MainStoryboard.storyboard */,
+				0AAC27A7168944ED008182A1 /* BBSearchViewController.h */,
+				0AAC27A8168944ED008182A1 /* BBSearchViewController.m */,
 				0AAC27871689448F008182A1 /* BBViewController.h */,
 				0AAC27881689448F008182A1 /* BBViewController.m */,
 				0AAC27731689448F008182A1 /* Supporting Files */,
@@ -274,6 +279,7 @@
 				0AAC27791689448F008182A1 /* main.m in Sources */,
 				0AAC277D1689448F008182A1 /* BBAppDelegate.m in Sources */,
 				0AAC27891689448F008182A1 /* BBViewController.m in Sources */,
+				0AAC27A9168944ED008182A1 /* BBSearchViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
