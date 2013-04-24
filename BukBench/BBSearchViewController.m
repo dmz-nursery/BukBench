@@ -7,47 +7,84 @@
 //
 
 #import "BBSearchViewController.h"
+#import "BBListOfBooksViewController.h"
+
+#define EMPTY_DATA 2 //book not found in openlibrary.com database
 
 @interface BBSearchViewController () <UITextFieldDelegate>
-@property (weak, nonatomic) IBOutlet UITextField *searchBox;
-
+@property (weak, nonatomic) IBOutlet UITextField *txtSearchBox;
+@property (nonatomic, strong) NSString *searchString;
+@property (nonatomic, strong) NSArray *fetchedBooks;
 @end
 
 @implementation BBSearchViewController
-@synthesize searchBox;
-
+@synthesize txtSearchBox;
+@synthesize fetchedBooks;
+@synthesize searchString;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.searchBox.delegate = self;
 }
 
-- (IBAction)bookEnteredInSearchBox:(id)sender
+- (IBAction)userSelectedSearchBox:(UITextField *)sender
 {
-    [searchBox resignFirstResponder];
-    NSLog(@"entered book: %@", searchBox.text);
+    sender.text = @"";
+    sender.textColor = [UIColor blackColor];
 }
 
 
-
-
-
-
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (IBAction)bookIsEnteredInSearchBox:(UITextField *)sender
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
+    self.searchString = sender.text;
+    BBISBNdbClient *client = [[BBISBNdbClient alloc] init];
+    NSURL *isbndbQueryURL = [client formQueryUrlForTitle:self.searchString];
+    
+    UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc]
+                                        initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+    [spinner startAnimating];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:spinner];
+    
+    dispatch_queue_t backgroundQueue = dispatch_queue_create("serverCallQueue", NULL);
+    dispatch_async(backgroundQueue, ^(void){
+       NSData *isbndbBookData = [NSData dataWithContentsOfURL:isbndbQueryURL];
+       NSArray *isbns = [client extractISBNsFromData:isbndbBookData];
+       NSMutableArray *openLibBooks = [NSMutableArray array];
+       
+       for(NSString *isbn in isbns) {
+           NSURL *openLibQueryURL = [BBOpenLibraryClient formQueryURLForISBN:isbn];
+           NSData *openLibBookData = [NSData dataWithContentsOfURL:openLibQueryURL];
+           
+           if([openLibBookData length] > EMPTY_DATA) {
+               NSDictionary *openLibBook = [NSJSONSerialization JSONObjectWithData:openLibBookData
+                                                                           options:0
+                                                                             error:nil];
+               [openLibBooks addObject:openLibBook];
+           }
+           
+           self.fetchedBooks = openLibBooks;
+           self.navigationItem.rightBarButtonItem = nil;
+       }
+        dispatch_async(dispatch_get_main_queue(), ^(void) {
+            [self performSegueWithIdentifier:@"Show list of books" sender:self];
+        });
+    });
+    client = nil;
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if([segue.identifier isEqualToString:@"Show list of books"]) {
+        BBListOfBooksViewController *listOfBooksVC = (BBListOfBooksViewController *)segue.destinationViewController;
+        [listOfBooksVC setListOfBooks:self.fetchedBooks];
+        listOfBooksVC.navigationItem.title = self.searchString;
     }
-    return self;
 }
 
-- (void)didReceiveMemoryWarning
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    [self.txtSearchBox resignFirstResponder];
+    return YES;
 }
 
 @end

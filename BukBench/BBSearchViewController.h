@@ -7,6 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+#import "BBISBNdbClient.h"
+#import "BBOpenLibraryClient.h"
 
 @interface BBSearchViewController : UIViewController
 
